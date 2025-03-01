@@ -333,6 +333,10 @@ footer {
     margin-bottom: 30px;
 }
 
+.contact-info a {
+    text-decoration: none;
+}
+
 .contact-card {
     background: #f9f9f9;
     padding: 20px;
