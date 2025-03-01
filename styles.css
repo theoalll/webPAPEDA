@@ -1,3 +1,4 @@
+/* Reset dan Styling Dasar */
 * {
     margin: 0;
     padding: 0;
@@ -58,6 +59,7 @@ header p {
 .carousel-slide {
     min-width: 100%;
     height: auto;
+    position: relative;
 }
 
 .carousel-slide img {
@@ -83,6 +85,7 @@ header p {
     align-items: center;
     justify-content: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 10;
 }
 
 .carousel-btn:hover {
@@ -99,23 +102,29 @@ header p {
 }
 
 .carousel-indicators {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
     display: flex;
     justify-content: center;
-    /* margin-top: 15px; */
+    z-index: 5;
 }
 
 .indicator {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background-color: #ccc;
+    background-color: rgba(255, 255, 255, 0.6);
     margin: 0 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.3s;
+    border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .indicator.active {
     background-color: #ff7e5f;
+    transform: scale(1.2);
 }
 
 /* Registration Section */
@@ -249,6 +258,15 @@ footer {
         font-size: 1.2rem;
     }
 
+    .carousel-indicators {
+        bottom: 15px;
+    }
+
+    .indicator {
+        width: 10px;
+        height: 10px;
+    }
+
     .registration, .faq-section {
         padding: 25px;
     }
@@ -268,6 +286,16 @@ footer {
         width: 35px;
         height: 35px;
         font-size: 1rem;
+    }
+
+    .carousel-indicators {
+        bottom: 10px;
+    }
+
+    .indicator {
+        width: 8px;
+        height: 8px;
+        margin: 0 3px;
     }
 
     .faq-question {
