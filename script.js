@@ -7,18 +7,40 @@ document.addEventListener('DOMContentLoaded', function() {
     const indicators = document.querySelectorAll('.indicator');
     
     let currentIndex = 0;
-    const slideWidth = slides[0].clientWidth;
+    let autoSlideInterval;
+    let autoSlideEnabled = true;
     
     // Set initial position
     updateCarousel();
     
+    // Start auto slide
+    startAutoSlide();
+    
+    // Function to start auto sliding
+    function startAutoSlide() {
+        if (autoSlideEnabled) {
+            autoSlideInterval = setInterval(function() {
+                currentIndex = (currentIndex < slides.length - 1) ? currentIndex + 1 : 0;
+                updateCarousel();
+            }, 5000);
+        }
+    }
+    
+    // Function to stop auto sliding
+    function stopAutoSlide() {
+        clearInterval(autoSlideInterval);
+        autoSlideEnabled = false;
+    }
+    
     // Event listeners for buttons
     prevBtn.addEventListener('click', function() {
+        stopAutoSlide();
         currentIndex = (currentIndex > 0) ? currentIndex - 1 : slides.length - 1;
         updateCarousel();
     });
     
     nextBtn.addEventListener('click', function() {
+        stopAutoSlide();
         currentIndex = (currentIndex < slides.length - 1) ? currentIndex + 1 : 0;
         updateCarousel();
     });
@@ -26,16 +48,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Event listeners for indicators
     indicators.forEach((indicator, index) => {
         indicator.addEventListener('click', function() {
+            stopAutoSlide();
             currentIndex = index;
             updateCarousel();
         });
     });
-    
-    // Auto slide every 5 seconds
-    setInterval(function() {
-        currentIndex = (currentIndex < slides.length - 1) ? currentIndex + 1 : 0;
-        updateCarousel();
-    }, 5000);
     
     // Update carousel position and indicators
     function updateCarousel() {
